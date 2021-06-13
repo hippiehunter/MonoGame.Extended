@@ -38,26 +38,39 @@ namespace MonoGame.Extended.Input
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (button)
             {
-                case MouseButton.Left:     return IsPressed(m => m.LeftButton);
-                case MouseButton.Middle:   return IsPressed(m => m.MiddleButton);
-                case MouseButton.Right:    return IsPressed(m => m.RightButton);
-                case MouseButton.XButton1: return IsPressed(m => m.XButton1);
-                case MouseButton.XButton2: return IsPressed(m => m.XButton2);
+                case MouseButton.Left:     return IsPressed(_leftButtonStateDel);
+                case MouseButton.Middle:   return IsPressed(_middleButtonStateDel);
+                case MouseButton.Right:    return IsPressed(_rightButtonStateDel);
+                case MouseButton.XButton1: return IsPressed(_xButton1StateDel);
+                case MouseButton.XButton2: return IsPressed(_xButton2StateDel);
             }
 
             return false;
         }
+
+        static ButtonState LeftButtonState(MouseState m) => m.LeftButton;
+        static Func<MouseState, ButtonState> _leftButtonStateDel = LeftButtonState;
+        static ButtonState MiddleButtonState(MouseState m) => m.MiddleButton;
+        static Func<MouseState, ButtonState> _middleButtonStateDel = MiddleButtonState;
+        static ButtonState RightButtonState(MouseState m) => m.RightButton;
+        static Func<MouseState, ButtonState> _rightButtonStateDel = RightButtonState;
+        static ButtonState XButton1State(MouseState m) => m.XButton1;
+        static Func<MouseState, ButtonState> _xButton1StateDel = XButton1State;
+        static ButtonState XButton2State(MouseState m) => m.XButton2;
+        static Func<MouseState, ButtonState> _xButton2StateDel = XButton2State;
+
+
 
         public bool IsButtonUp(MouseButton button)
         {
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (button)
             {
-                case MouseButton.Left:     return IsReleased(m => m.LeftButton);
-                case MouseButton.Middle:   return IsReleased(m => m.MiddleButton);
-                case MouseButton.Right:    return IsReleased(m => m.RightButton);
-                case MouseButton.XButton1: return IsReleased(m => m.XButton1);
-                case MouseButton.XButton2: return IsReleased(m => m.XButton2);
+                case MouseButton.Left:      return IsReleased(_leftButtonStateDel);
+                case MouseButton.Middle:    return IsReleased(_middleButtonStateDel);
+                case MouseButton.Right:     return IsReleased(_rightButtonStateDel);
+                case MouseButton.XButton1:  return IsReleased(_xButton1StateDel);
+                case MouseButton.XButton2:  return IsReleased(_xButton2StateDel);
             }
 
             return false;
@@ -68,11 +81,11 @@ namespace MonoGame.Extended.Input
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (button)
             {
-                case MouseButton.Left: return WasJustPressed(m => m.LeftButton);
-                case MouseButton.Middle: return WasJustPressed(m => m.MiddleButton);
-                case MouseButton.Right: return WasJustPressed(m => m.RightButton);
-                case MouseButton.XButton1: return WasJustPressed(m => m.XButton1);
-                case MouseButton.XButton2: return WasJustPressed(m => m.XButton2);
+                case MouseButton.Left:      return WasJustPressed(_leftButtonStateDel);
+                case MouseButton.Middle:    return WasJustPressed(_middleButtonStateDel);
+                case MouseButton.Right:     return WasJustPressed(_rightButtonStateDel);
+                case MouseButton.XButton1:  return WasJustPressed(_xButton1StateDel);
+                case MouseButton.XButton2:  return WasJustPressed(_xButton2StateDel);
             }
 
             return false;
@@ -83,11 +96,11 @@ namespace MonoGame.Extended.Input
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (button)
             {
-                case MouseButton.Left: return WasJustReleased(m => m.LeftButton);
-                case MouseButton.Middle: return WasJustReleased(m => m.MiddleButton);
-                case MouseButton.Right: return WasJustReleased(m => m.RightButton);
-                case MouseButton.XButton1: return WasJustReleased(m => m.XButton1);
-                case MouseButton.XButton2: return WasJustReleased(m => m.XButton2);
+                case MouseButton.Left:      return WasJustReleased(_leftButtonStateDel);
+                case MouseButton.Middle:    return WasJustReleased(_middleButtonStateDel);
+                case MouseButton.Right:     return WasJustReleased(_rightButtonStateDel);
+                case MouseButton.XButton1:  return WasJustReleased(_xButton1StateDel);
+                case MouseButton.XButton2:  return WasJustReleased(_xButton2StateDel);
             }
 
             return false;
